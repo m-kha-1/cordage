@@ -1,0 +1,6 @@
+Une API est une interface logicielle qui permet à différentes applications de communiquer entre elles. Elle définit les méthodes et les formats de données que les applications peuvent utiliser pour interagir les unes avec les autres.
+
+
+
+"""
+python manage.py axes_reset

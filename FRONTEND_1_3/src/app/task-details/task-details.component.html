@@ -1,0 +1,53 @@
+<!-- <p>task-details works! {{sharedValue | json }}</p>
+    
+    <div *ngFor="let url of urls;let i=index ">
+   
+   
+    <img src={{url}} alt="no image"><br>
+    <a href="{{url}}">{{url}}</a>
+    <h3 style="color:rgb(238, 213, 90)">Comments of {{dataTaskString.cgSupervisor2_name}} - Supervisor :  </h3>
+    <h4 style="color:rgb(78, 78, 78)"> {{dataTaskString.comments_supervisor2[i]}}</h4>
+    <div class="form-group">
+       
+        <input type="text" class="form-control" id="name" name="name" placeholder="type comment" [(ngModel)]="commentInput[i]" required>  
+        
+        </div>
+  
+    <button type="button" class="btn btn-primary" (click)="comment(i,commentInput[i])">Publish comment</button>
+    
+
+
+    </div>
+    <div class="form-group">
+        <label for="name">Production Name :</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Project Name"  required >
+  
+        
+        </div>
+   -->
+
+
+
+
+
+       
+
+        <div class="container mt-3">
+          <div *ngFor="let url of urls; let i = index">
+            <div class="card mb-3">
+              <img class="card-img-top" [src]="url" alt="Image description">
+              <div class="card-body">
+                <h5 class="card-title text-danger">Version {{i+1}} is published</h5>
+
+                <h4 class="card-title text-primary"> Comments from supervisor ({{dataTaskString.cgSupervisor2_name}})  : </h4>
+                <h4 class="card-text">{{dataTaskString.comments_supervisor2[i]}}</h4>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Type comment" [(ngModel)]="commentInput[i]" required>
+                </div>
+                <button type="button" class="btn btn-success" (click)="comment(i,commentInput[i])">Publish comment</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+       
