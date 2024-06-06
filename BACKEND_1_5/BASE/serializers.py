@@ -6,11 +6,7 @@ class ProdSerializer(serializers.ModelSerializer):
         model=PRODUCTION
         fields='__all__'
         
-# class TaskSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model=Task
-#         fields='__all__'
-#         read_only_fields = ['id']
+
         
 class TaskSerializer2(serializers.ModelSerializer):
     class Meta:
@@ -27,23 +23,11 @@ class TaskSerializer2_noId(serializers.ModelSerializer):
     class Meta:
         model=Task2
         fields='__all__'
-        # fields = ['id', 'name', 'type', 'dateCreated', 'dateDue', 'completed','production_name','cgArtist_name','producer_name']
         read_only_fields = ['id']
         
-    # def get_production_name(self, obj):
-    #     # Accéder à l'objet lié et à son attribut de chaîne
-    #     return obj.PRODUCTIONId.name if obj.PRODUCTIONId else None
 
-    # def get_cgArtist_name(self, obj):
-    #     # Accéder à l'objet lié et à son attribut de chaîne
-    #     return obj.cgArtistId.name if obj.cgArtistId else None
         
-   
-        
-        
-        
-        
-        
+               
 class ProducerSerializer(serializers.ModelSerializer):
     class Meta:
         model=Producer

@@ -15,40 +15,6 @@ def hello_view(request):
     return HttpResponse("Hello")
 
 
-# def liste_fichiers(request):
-   
-#     url = 'http://localhost:8080/PROJECT_MOCK/'
-#     response = requests.get(url)
-
-#     if response.status_code == 200:
-      
-#         fichiers = response.json()
-        
-     
-#         return Response(fichiers)
-#     else:
-#         # Retourner une réponse d'erreur si la requête a échoué
-        # return Response({'message': 'Impossible de récupérer les fichiers'}, status=response.status_code)
-# @api_view(['GET'])
-# def liste_fichiers(request):
-#     try:
-        
-#         url = "http://localhost:8080/PROJECT_MOCK/modelling/Pierre%20M/PUBLISH/"
-#         response = requests.get(url)
-        
-#         response.raise_for_status()  # Vérifie si une erreur HTTP s'est produite
-        
-#         if response.content:  # Vérifie si la réponse contient du contenu
-#             fichiers = response.json()
-#             return Response(fichiers)
-#         else:
-#             return Response({'message': 'La réponse est vide'}, status=204)  # Réponse vide
-#     except RequestException as e:
-#         return Response({'message': 'Erreur de connexion au serveur distant'}, status=500)
-    
-    
-
-
 
 import os
 import requests
@@ -96,5 +62,5 @@ def liste_fichiers(request, np, tt,nt):
         return Response({'message': 'Erreur de connexion au serveur distant'}, status=500)
 
 
-    # return Response({'message': 'Une erreur s\'est produite'}, status=500)
+
 

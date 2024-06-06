@@ -13,20 +13,15 @@ from django.contrib.auth.views import LoginView,LogoutView
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 class TokenObtainPairView(TokenObtainPairView):
-    # Personnalisez la réponse pour inclure plus d'informations utilisateur si nécessaire
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
-        # Ajoutez des informations utilisateur supplémentaires à la réponse si nécessaire
         return response
 
 
 from .views import TokenObtainPairView
 urlpatterns = [
     
-    # path('accounts/login/', LoginView.as_view(), name='login'),
-    #page accueil liste des productions existantes
-    
-    # path('', include('django.contrib.auth.urls')),  # Inclure les URLs d'authentification de Django
+   
     path('productions',prod),
     path('tasks2',gettasks2),
     path('task2/<str:task_id>',gettask2Id),
@@ -63,8 +58,7 @@ urlpatterns = [
     
     path('get_prod_id/<int:task_id>/', get_PRODUCTION_id, name='get_production_id'),
     
-    #obtient les tâches liées à une production à partir de son ID
-    # path('get_task_ids_by_production/<int:production_id>/', get_task_ids_by_production, name='get_task_ids_by_production'),
+    
    
     #obtient les tâches liées à une production à partir de son ID
     path('get_task2_ids_by_production/<int:production_id>/', get_task2_ids_by_production, name='get_task2_ids_by_production'),
