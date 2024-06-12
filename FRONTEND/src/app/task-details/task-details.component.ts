@@ -89,11 +89,7 @@ export class TaskDetailsComponent {
  
 
 
-  // commentS(a:number){
-  //   console.log(a);
-  //   this.productionsService.CommentSup(this.sharedValue.id).subscribe(comment => this.commentSup=comment)
-  // }
-  
+
   commentS(i: number, commentaire: string) {
     
     const jsonCommentaire = { [i]: commentaire };
@@ -120,7 +116,6 @@ export class TaskDetailsComponent {
       const taskdataCurrentValueJson = JSON.parse(taskdataCurrentValue)
       console.log("détails de local storage actuel",this.dataTaskString.comments_supervisor2)
       taskdataCurrentValueJson.comments_supervisor2=this.dataTaskString.comments_supervisor2
-      // console.log("détails de local storage apres modifications",taskdataCurrentValueJson.comments_supervisor2)
       console.log("détails de local storage apres modifications",JSON.stringify(taskdataCurrentValueJson))
       window.localStorage.setItem('taskData',JSON.stringify(taskdataCurrentValueJson))
 
@@ -137,42 +132,14 @@ export class TaskDetailsComponent {
   console.log("dataTaskString",JSON.parse(dataTask));
   this.dataTaskString=JSON.parse(dataTask)
   
-  // Object.keys(this.dataTaskString.comments_supervisor2).forEach(key => {
-  //   console.log(`Key: ${key}, Value: ${this.dataTaskString.comments_supervisor2[key]}`);
-  // });
+ 
   console.log("dataTask details:", Object.keys(this.dataTaskString.comments_supervisor2));
   console.log("dataTask2 details:", Object.values(this.dataTaskString.comments_supervisor2));
 
 }
-  this.communicatorService.getSharedValue().subscribe((data:any) =>this.sharedValue = data);
   this.productionsService.listVersionsPublished(this.dataTaskString.production_name,this.dataTaskString.type,this.dataTaskString.name).subscribe((data:any) =>this.urls= data)
   
-  
-//stockage local de sharedValue 
-  // localStorage.setItem('sharedValue',this.sharedValue.name)
 
-
-//   console.log("sharedValue reçus",this.sharedValue.commentsCgArtist);
-
-//   console.log("paths images:",this.urls)
-
-//  this.nbComments=Object.keys(this.sharedValue.commentsCgArtist).length
-//  console.log(this.nbComments)
-//  this.commentsArray=Array(this.nbComments).fill(1)
-//  if (this.sharedValue && this.sharedValue.commentsCgArtist){
-//  this.commentsCgArtist=Object.values(this.sharedValue.commentsCgArtist)}
-
-//  console.log("comments : ",this.commentsCgArtist)
-//  console.log("commentsArray : ",this.commentsArray)
-
- 
-
-
-  // this.pathTask = `C:\\CORD\\${this.sharedValue.production_name}\\${this.sharedValue.type}\\${this.sharedValue.cgArtist_name}\\PUBLISH`
-  // console.log('path task prod',this.pathTask)
-
-  this.imagePath = 'file:///C:/CORD/PROJECT_MOCK/modelling/PierreM/PUBLISH/image1.png';
-  // C:\CORD\PROJECT_MOCK\modelling\Sophie B
 
 
 

@@ -2,6 +2,7 @@ import { Component, Input,Output,EventEmitter } from '@angular/core';
 import { Production } from './production_in';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router'
+import { ProductionsService } from '../productions.service';
 
 
 
@@ -43,9 +44,31 @@ import { RouterModule } from '@angular/router'
 
 export class ProductionComponent {
 
+  imagePath:string=""
+
+  
+
   @Input() production: Production | null = null;
 
   @Output() onProductionClickEvent: EventEmitter<{ id: number, name: string }> = new EventEmitter();
+
+  constructor(private productionsService :ProductionsService ){}
+  ngOnInit(): void {
+    this.loadImage();
+  }
+
+  loadImage(): void {
+    const np = this.production?.name; // Supposant que l'id de la production est utilisé comme np
+    this.productionsService.image_production(np!).subscribe(
+      data => {
+        this.imagePath = data; // Mettez à jour cette ligne selon la structure de vos données
+        console.log('Image path loaded:', this.imagePath);
+      },
+      error => {
+        console.error('Error loading image:', error);
+      }
+    );
+  }
 
   onClick() {
     if (this.production) {

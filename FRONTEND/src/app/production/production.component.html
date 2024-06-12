@@ -1,9 +1,10 @@
 
 
     <div class="card" style="width: 18rem;">
-        <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+        <img class="card-img-top" [src]="imagePath" alt="Card image cap">
+        
         <div *ngIf="production != null" class="card-body">
-          <h5 class="card-title card-col">{{production.id}}</h5>
+          <!-- <h5 class="card-title card-col">{{production.id}}</h5> -->
           <p class="card-text card-col">Description: ...............................................................................................................</p>
         </div>
         <ul *ngIf="production != null" class="list-group list-group-flush">

@@ -47,17 +47,6 @@
               </div>
               
         
-
-
-
-
-
-
-
-
-            <!-- <div class="text-end">
-                <button type="button" class="btn btn-outline-dark" (click)="offcanvas.close('Close click')">Close</button>
-            </div> -->
         </div>
         
     </ng-template>
@@ -70,7 +59,6 @@
 </header>
 <main>
   <div class="layout">
-      <!-- <app-production *ngFor="let p of productions" (monevenement)="handleInput({id: p.id, name: p.name})" [production]="p"></app-production> -->
     <app-production *ngFor="let p of productions" (onProductionClickEvent)="handleInput($event)" [production]="p"></app-production>
     </div>
 </main>

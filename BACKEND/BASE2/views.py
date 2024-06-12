@@ -60,7 +60,50 @@ def liste_fichiers(request, np, tt,nt):
 
     except RequestException as e:
         return Response({'message': 'Erreur de connexion au serveur distant'}, status=500)
+    
+# @api_view(['GET'])
+# def liste_fichiers(request, np):
+#      try:
+#         url = f'http://localhost:8080/{np}/'
+#         path_img=  '.png'
+#      except RequestException as e:
+#          return Response ({'message': 'Erreur de connexion au serveur'},status=500)
+        
 
 
+@api_view(['GET'])
+def image_production(request, np):
+    try:
+        # Construire l'URL de base
+        url_base = f'http://localhost:8080/{np}/'
 
+        # Faire une requête GET pour obtenir le contenu de la page
+        response = requests.get(url_base)
+        response.raise_for_status()
 
+        # Analyser le contenu HTML de la page
+        soup = BeautifulSoup(response.text, "html.parser")
+        print(soup)
+
+        # Trouver tous les liens dans la page
+        links = soup.find_all("a")
+
+        # Initialiser une liste pour stocker les chemins des images
+        image_paths = []
+
+        # Parcourir tous les liens trouvés
+        for link in links:
+            href = link.get("href")
+            # Vérifier si le lien pointe vers une image.jpg
+            if href and href.endswith('.jpg'):
+                # Construire le chemin complet de l'image
+                full_path = urljoin(url_base, href)
+                # Ajouter le chemin de l'image à la liste
+                image_paths.append(full_path)
+
+        # Renvoyer les chemins des images en utilisant Response
+        return Response(image_paths, status=200)
+
+    except requests.RequestException as e:
+        # Gérer les exceptions de requête
+        return Response({'message': 'Erreur de connexion au serveur distant'}, status=500)

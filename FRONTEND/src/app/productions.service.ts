@@ -111,14 +111,24 @@ export class ProductionsService {
 
   }
 
-  //deprecated
+  
   listVersionsPublished(np: string, tt: string, nt: string): Observable<any> {
 
     return this.http.get<any>(`${this.url}/liste-fichiers/${np}/${tt}/${nt}/`)
 
 
-    // 'liste-fichiers/<str:np>/<str:tt>/<str:nt>/'
+  
   }
+  image_production(np: string): Observable<any> {
+
+    return this.http.get<any>(`${this.url}/image_production/${np}/`)
+
+
+
+  }
+
+
+
 
 
   CommentSup(id: number, commentaire: any): Observable<any> {
@@ -129,7 +139,7 @@ export class ProductionsService {
   login(username: string, password: string) {
     return this.http.post<any>('http://127.0.0.1:8000/api/auth/token/', { username, password })
       .pipe(map(response => {
-        // Stockez le token dans le stockage local ou utilisez-le selon vos besoins
+        // Stocke  token dans le stockage local 
         const token = response.access;
         localStorage.setItem('token', token);
         console.log("réponse ::",response.access)
@@ -142,7 +152,4 @@ export class ProductionsService {
 
 
 }
-// getOrganization(organizationId: string): Observable<Organization> {
-//   return this.httpClient.get<Organization>(
-//               `${this.baseURL}/v1/organizations/${organizationId}`
 
