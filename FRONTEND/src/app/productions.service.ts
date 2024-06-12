@@ -140,9 +140,13 @@ export class ProductionsService {
     return this.http.post<any>('http://127.0.0.1:8000/api/auth/token/', { username, password })
       .pipe(map(response => {
         // Stocke  token dans le stockage local 
+        const respon=response
         const token = response.access;
+        const userType = response.user_type;
+       
         localStorage.setItem('token', token);
-        console.log("réponse ::",response.access)
+        console.log("réponse ::",respon)
+        localStorage.setItem('userType', userType);
         return response;
       }));
 

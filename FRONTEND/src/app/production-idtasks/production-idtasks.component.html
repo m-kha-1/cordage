@@ -96,11 +96,22 @@
             
           
       </p-tabPanel>
-      <p-tabPanel header="He">
-          <p>
+      <p-tabPanel header="Team">
+        <div>
+        <!-- <h1>Artists</h1> -->
+        <div *ngFor ="let pit of productionIdTasks">
+          <h1>{{pit.cgArtist_name }}</h1>
+
+        </div>
+        <!-- <h1>Supervisors</h1> -->
+        
+      </div>
+
+
+          <!-- <p>
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
               ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
-          </p>
+          </p> -->
       </p-tabPanel>
       <p-tabPanel header="HeI">
           <p>

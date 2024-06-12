@@ -83,7 +83,7 @@ def image_production(request, np):
 
         # Analyser le contenu HTML de la page
         soup = BeautifulSoup(response.text, "html.parser")
-        print(soup)
+        # print(soup)
 
         # Trouver tous les liens dans la page
         links = soup.find_all("a")

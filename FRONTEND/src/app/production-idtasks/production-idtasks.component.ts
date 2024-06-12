@@ -1,7 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 
 //services
-import { ComponentCommunicatorService } from '../component-communicator-service.service';
 import { ProductionsService } from '../productions.service';
 
 
@@ -132,7 +131,7 @@ export class ProductionIdtasksComponent {
 
   savedData!: string;
 
-  constructor(private componentCommunicatorService: ComponentCommunicatorService, private productionsService: ProductionsService, config: NgbOffcanvasConfig,
+  constructor( private productionsService: ProductionsService, config: NgbOffcanvasConfig,
     private offcanvasService: NgbOffcanvas,
   ) {
     config.position = 'end';
@@ -157,8 +156,7 @@ export class ProductionIdtasksComponent {
     
    
     
-    this.componentCommunicatorService.getSharedValue().subscribe((data) => { this.sharedData = data });
-    console.log("id zzz de la production", this.sharedData)
+
 
     // localStorage.setItem('name stored in localStorage : ', this.sharedData.name);
     // this.retrieveData();
@@ -187,17 +185,7 @@ export class ProductionIdtasksComponent {
 
 
 
-  // saveData() {
-  //   localStorage.setItem('key', 'valeur');
-  //   this.savedData = 'valeur';
-  //   console.log('Données sauvegardées dans localStorage.');
-  // }
-
-  // retrieveData() {
-  //   this.savedData = localStorage.getItem('key') ?? '';
-  //   console.log('Données récupérées depuis localStorage:', this.savedData);
-  // }
-
+  
 
 
 
@@ -297,7 +285,7 @@ export class ProductionIdtasksComponent {
 
     this.productionsService.loadCgArtist().subscribe(
       (data: any) => {
-        this.cgArtistList = data; // Assurez-vous que 'data' est un tableau d'objets
+        this.cgArtistList = data; 
         console.log("la liste de cgartists est : ", this.cgArtistList); console
       },
       (error: any) => {
@@ -310,7 +298,7 @@ export class ProductionIdtasksComponent {
 
     this.productionsService.loadSupervisor().subscribe(
       (data: any) => {
-        this.supervisorList = data; // Assurez-vous que 'data' est un tableau d'objets
+        this.supervisorList = data; 
         console.log("la liste de supervisor est : ", this.supervisorList); console
       },
       (error: any) => {
@@ -322,41 +310,18 @@ export class ProductionIdtasksComponent {
   handleInput(datadelev: { id: number, name: string }) {
     localStorage.setItem("taskData",JSON.stringify(datadelev))
 
-    this.componentCommunicatorService.setSharedValue(datadelev);
-    // localStorage.setItem('sharedValue',datadelev.name)
+
     console.log("message du composant:task exportée", datadelev);
   }
-
-  // handleInput2(evt: {id:number,name:string,auteur:string}) {
-  //   console.log('Input value:', evt);
-  //   this.componentCommunicatorService.setSharedValue()}
-
 
 
 
 
 
   delete(datadelev: { id: number }) {
-    this.productionsService.deleteTask(datadelev.id).subscribe();
-    // let votreValeur:{id:string,name:string}| null = JSON.parse(localStorage.getItem('cle') || 'null') ;
-    // if (votreValeur){console.log('recuperation  valeur de cle : id de de la production',votreValeur.id )}
-    // // console.log('recuperation cle valeur',votreValeur)
-    // if (votreValeur && votreValeur.id !==null){
-    //   console.log("delete", votreValeur.id);
-    //   this.productionsService.deleteTask(datadelev.id).subscribe();
-    //   //remove for test
-    // //   this.productionsService.loadTasksByProductionId(Number(votreValeur.id)).subscribe((data: any) => {
-    // //     this.productionIdTasks = data;
-      
-    // //     console.log("taches lieés à la production", this.productionIdTasks); for (let item of this.productionIdTasks) {
-    // //       console.log("eleteee");
-    // //       console.log("elt", item.name);
-    // //     }
-    // //   }
-    // // );
-    // //remove for test//
+    if (localStorage.getItem("userType")=="supervisor"){this.productionsService.deleteTask(datadelev.id).subscribe();}
+    else{alert("you must be a supervisor to delete")}
     
-    // }
   
   }
 

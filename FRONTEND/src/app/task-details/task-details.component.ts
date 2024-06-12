@@ -5,6 +5,7 @@ import { ProductionsService } from '../productions.service';
 import { FormsModule } from '@angular/forms';
 import { stringify } from 'querystring';
 // import { Task } from '../production/task_in';
+import { throwError } from 'rxjs';
 
 type Comments = {
   [key: string]: any; // Ou spécifiez le type de valeur si connu
@@ -67,7 +68,7 @@ export class Task2{
 
 
 export class TaskDetailsComponent {
-  constructor(private communicatorService:ComponentCommunicatorService,private productionsService:ProductionsService) {}
+  constructor(private productionsService:ProductionsService) {}
   pathTask:string = ''
   sharedValue!:Task2;
 
@@ -104,7 +105,7 @@ export class TaskDetailsComponent {
   }
   
   comment(i:number,commentaire:string){
-    console.log('avant : ',this.dataTaskString.comments_supervisor2);
+    if (localStorage.getItem('userType')=="supervisor"){
     this.dataTaskString.comments_supervisor2[String(i)]=commentaire;
     console.log('après : ',this.dataTaskString.comments_supervisor2);
     this.jsonNataskTytaskComm={"name":this.dataTaskString.name,"type":this.dataTaskString.type,"comments_supervisor2":this.dataTaskString.comments_supervisor2}
@@ -120,6 +121,7 @@ export class TaskDetailsComponent {
       window.localStorage.setItem('taskData',JSON.stringify(taskdataCurrentValueJson))
 
     }
+  }else {alert("You must be a supervisor to make a comment !");}
 
 
   }

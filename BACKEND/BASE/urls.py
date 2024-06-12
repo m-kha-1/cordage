@@ -10,15 +10,16 @@ from django.contrib.auth.views import LoginView,LogoutView
 # from rest_framework_simplejwt.views import TokenObtainPairView
 
 
-from rest_framework_simplejwt.views import TokenObtainPairView
+# from rest_framework_simplejwt.views import TokenObtainPairView
 
-class TokenObtainPairView(TokenObtainPairView):
-    def post(self, request, *args, **kwargs):
-        response = super().post(request, *args, **kwargs)
-        return response
+# class TokenObtainPairView(TokenObtainPairView):
+#     def post(self, request, *args, **kwargs):
+#         response = super().post(request, *args, **kwargs)
+#         return response
 
 
-from .views import TokenObtainPairView
+from .views import CustomTokenObtainPairView3
+from .views import CustomTokenObtainPairView2
 urlpatterns = [
     
    
@@ -68,7 +69,7 @@ urlpatterns = [
     
     # path('login/', login, name='login'),
     
-    path('api/auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/auth/token/', CustomTokenObtainPairView3.as_view(), name='token_obtain_pair'),
 
     
     

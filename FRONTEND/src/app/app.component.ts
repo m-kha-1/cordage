@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 
-
 import { ProductionsComponent } from './productions/productions.component';
 
 // import { LoginComponent } from './login/login.component';
@@ -27,7 +26,7 @@ import { AddformComponent } from './addform/addform.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,ProductionsComponent,HttpClientModule,NgFor,ProductionIdTtaskComponent,AddformComponent],
+  imports: [RouterOutlet,HttpClientModule,NgFor],
   providers: [ProductionsService,ComponentCommunicatorService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

@@ -311,17 +311,57 @@ def createUser(request):
 
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-class TokenObtainPairView(TokenObtainPairView):
+class CustomTokenObtainPairView2(TokenObtainPairView):
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
         return response
 
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework.permissions import AllowAny
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        
+        # Ajoutez des claims supplémentaires ici si nécessaire
+        return token
 
+    def validate(self, attrs):
+        data = super().validate(attrs)
 
+        # Ajoutez ici toute logique supplémentaire de validation si nécessaire
 
+        # Ajoutez l'utilisateur dans les validated_data pour l'accéder dans la vue
+        data['user'] = self.user
 
+        return data
 
+class CustomTokenObtainPairView3(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
 
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        try:
+            serializer.is_valid(raise_exception=True)
+        except Exception as e:
+            return Response({"detail": "Invalid credentials"}, )
+        
+        user = serializer.validated_data.get('user', None)
+        if user is None:
+            return Response({"detail": "Unable to retrieve user"}, )
 
+        token = serializer.validated_data['access']
 
+        # Récupérer le type d'utilisateur
+        try:
+            profile = UserProfile.objects.get(user=user)
+            user_type = profile.type
+        except UserProfile.DoesNotExist:
+            return Response({"detail": "User profile not found"},)
+
+        return Response({
+            'access': token,
+            'refresh': serializer.validated_data['refresh'],
+            'user_type': user_type,  # Inclure le type d'utilisateur dans la réponse
+        })
 

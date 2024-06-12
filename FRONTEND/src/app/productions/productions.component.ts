@@ -136,8 +136,7 @@ resetForm():void{
 
 
 
-onSubmit(form: NgForm){
- 
+onSubmit(form: NgForm){if (localStorage.getItem('userType')=='producer'){
 
   if (form.valid) {
     this.formData.producers = this.selectedProducers.map(producer => producer.id);
@@ -152,6 +151,11 @@ onSubmit(form: NgForm){
     console.log('Form submission failed. Form is invalid.');
   }
   this.productionCreated = false;
+}
+else {alert('You must be a producer to create a new production')}
+ 
+
+  
   
 
 }

@@ -35,14 +35,16 @@
 
 
       <div (click)="clickTask()" class="card">
-        <img class="card-img-top" src="..." alt="Card image cap">
+        <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
         <div class="card-body">
           <h5 [ngClass]="getClasses()" class="card-title">{{task.name}}</h5>
           <p class="card-text card-col">Description: ...............................................................................................................</p>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Type : {{task.type}}</li>
             <li class="list-group-item">Created : {{task.dateCreated}}</li>
-            <li class="list-group-item">to be defined</li>
+            <li class="list-group-item">Due date: {{task.dateDue}}</li>
+            <li class="list-group-item">Supervisor :{{task.cgSupervisor2_name}}</li>
+            <li class="list-group-item">Artist :{{task.cgArtist_name}}</li>
           </ul>
         </div >
         <div class="card-body">
