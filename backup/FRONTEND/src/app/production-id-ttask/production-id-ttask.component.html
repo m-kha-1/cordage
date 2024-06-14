@@ -1,0 +1,72 @@
+ <!-- <div *ngIf="task">
+    <div *ngFor="let singleTask of task">
+      <h2>{{ singleTask|json }}</h2>
+      <p>Type: {{ singleTask.type }}</p>
+      <p>Date de création: {{ singleTask.dateCreated }}</p>
+      <p>Date d'échéance: {{ singleTask.dateDue }}</p>
+     
+    </div>
+  </div> -->
+<!-- <div (click)="clickTask()" >
+
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="..." alt="Card image cap">
+    </div>
+    <div  class="card-body">
+      <h5 class="card-title card-col ">{{task.name}}</h5>
+      <p class="card-text card-col">Description: ...............................................................................................................</p>
+    </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{task.type}}</li>
+        <li class="list-group-item">{{task.dateCreated}}</li>
+        <li class="list-group-item">to be defined</li>
+      </ul>
+    </div>
+
+    
+      <div class="card-body">
+      <a href="#" class="card-link">
+      <a href="#" class="card-link">Another link</a>
+      
+      <div class="card-body">
+      <a href="#" class="card-link"> -->
+      <!-- <a href="#" class="card-link" (click)="lienClick">Delete</a> -->
+ 
+
+
+      <div (click)="clickTask()" class="card">
+        <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+        <div class="card-body">
+          <h5 [ngClass]="getClasses()" class="card-title">{{task.name}}</h5>
+          <p class="card-text card-col">Description: ...............................................................................................................</p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Type : {{task.type}}</li>
+            <li class="list-group-item">Created : {{task.dateCreated}}</li>
+            <li class="list-group-item">Due date: {{task.dateDue}}</li>
+            <li class="list-group-item">Supervisor :{{task.cgSupervisor2_name}}</li>
+            <li class="list-group-item">Artist :{{task.cgArtist_name}}</li>
+          </ul>
+        </div >
+        <div class="card-body">
+          <div class="row">
+              <div class="col">
+                  <button class="card-link btn btn-danger" (click)="clickDelete()">Delete</button>
+              </div>
+              <div class="col-auto">
+                  <a href="#" class="card-link" (click)="clickTask()" [routerLink]="['/taskdetails']">Details</a>
+              </div>
+          </div>
+        
+      </div>
+      
+
+
+
+
+
+
+
+
+    
+ 
+

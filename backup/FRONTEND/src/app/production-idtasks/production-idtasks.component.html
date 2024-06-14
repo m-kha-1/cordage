@@ -1,0 +1,138 @@
+<header>
+   
+</header>
+
+
+<main>
+    <h1>{{infoProduction.name}}</h1>
+
+<div class="card">
+  <p-tabView>
+      <p-tabPanel header="Tasks">
+          <p>
+            <ng-template #content let-offcanvas>
+              <div class="offcanvas-header fuchsia-background ">
+                <h4 class="offcanvas-title">New task</h4>
+                <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+              </div>
+
+
+              <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+              <div class="form-group">
+                <label for="name">Task Name :</label>
+                <input type="text" class="form-control" id="nme" name="nme" placeholder="Task Name" [(ngModel)]="formData.name"  required >
+              </div>
+
+              <div class="invalid-feedback" >
+                  Task Name is required.
+              </div>
+
+              <label for="sel2" class="form-label">Type :</label>
+                  <select  class="form-select mi--width" id="sel2" name="sellist2" [(ngModel)]="formData.type" >
+                    <option *ngFor="let t of taskType" [value]="t" >{{t}}</option>
+                  </select>
+
+
+              
+                  <div class="col-12">
+                    <div class="input-group">
+                      <input
+                        class="form-control"
+                        placeholder="yyyy-mm-dd"
+                        name="dp"
+                        [(ngModel)]="dateDue"
+                        ngbDatepicker
+                        #d="ngbDatepicker"
+                      />
+                      <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+                    </div>
+                  </div>
+                
+                
+                  <label for="sel2" class="form-label">Available producers :</label>
+                  <select multiple class="form-select mi--width" id="sel3" name="sellist3" [(ngModel)]="selectedProducers" required>
+                    <option *ngFor="let m of producerList" [value]="m">{{m.name}}</option>
+                  </select>
+                  
+                  <label for="sel3" class="form-label">Available cgartists :</label>
+                  <select  multiple class="form-select mi--width" id="sel4" name="sellist4" [(ngModel)]="selectedArtist" >
+                    <option *ngFor="let m of cgArtistList" [value]="m">{{m.name}}</option>
+                  </select>
+                
+                  <label for="sel4" class="form-label">Available supervisors :</label>
+                  <select multiple class="form-select mi--width" id="sel5" name="sellist5" [(ngModel)]="selectedSupervisor" >
+                    <option *ngFor="let m of supervisorList" [value]="m">{{m.name}}</option>
+                  </select>
+
+                  
+
+
+                  <button type="submit" class="btn btn-primary mt-2 clr" >Submit</button>
+
+          
+
+              </form>
+
+                
+            </ng-template>
+            
+            <button class="btn btn-lg btn-outline-primary" (click)="open(content)">New task</button>
+            
+            <div class="layout" >
+            <!-- <app-production-id-ttask  class="layout" [task]="productionIdTasks?.tasks " ></app-production-id-ttask> -->
+            <app-production-id-ttask *ngFor="let x of productionIdTasks" [task]="x" (evenementTask)="handleInput($event)" (evenementTaskDelete)="delete($event)"></app-production-id-ttask>
+            <!-- <app-production-id-ttask  class="layout"   *ngFor="let x of productionIdTasks.tasks " [task]="x" ></app-production-id-ttask> -->
+            
+            </div>
+
+
+
+            
+          
+      </p-tabPanel>
+      <p-tabPanel header="Team">
+        <div>
+        <!-- <h1>Artists</h1> -->
+        <div *ngFor ="let pit of productionIdTasks">
+          <h1>{{pit.cgArtist_name }}</h1>
+
+        </div>
+       
+        
+      </div>
+
+
+        
+      </p-tabPanel>
+      <p-tabPanel header="Schedule">
+          <p>
+             
+          </p>
+      </p-tabPanel>
+  </p-tabView>
+</div>
+
+
+
+
+    
+</main>
+
+
+
+<!-- <div class="card" style="width: 18rem;" *ngFor="let item of productionIdTasks.tasks">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div  class="card-body">
+      <h5 class="card-title card-col">{{item['name']}}</h5>
+      <p class="card-text card-col">Description: ...............................................................................................................</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">{{item['type']}}</li>
+      <li class="list-group-item">{{item['dateCreated']}}</li>
+      <li class="list-group-item">to be defined</li>
+    </ul>
+
+
+      <div class="card-body">
+      <a href="#" class="card-link">
+      <a href="#" class="card-link">Another link</a> -->

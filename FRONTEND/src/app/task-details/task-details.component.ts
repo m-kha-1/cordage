@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { stringify } from 'querystring';
 // import { Task } from '../production/task_in';
 import { throwError } from 'rxjs';
+import { HeaderComponent } from '../header/header.component';
 
 type Comments = {
   [key: string]: any; // Ou spécifiez le type de valeur si connu
@@ -57,7 +58,7 @@ export class Task2{
 @Component({
   selector: 'app-task-details',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [HeaderComponent,CommonModule,FormsModule],
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.css'
 })

@@ -17,6 +17,10 @@ import {NgbCollapseModule,NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 
+import { HeaderComponent } from '../header/header.component';
+
+
+
 class Producer {
   id: number;
   name: string;
@@ -32,7 +36,7 @@ class Producer {
 @Component({
   selector: 'app-productions',
   standalone: true,
-  imports: [ProductionComponent,ProductionIdTtaskComponent,CommonModule,RouterOutlet,RouterLink,NgbCollapseModule,NgbDropdownModule,FormsModule],
+  imports: [HeaderComponent,ProductionComponent,ProductionIdTtaskComponent,CommonModule,RouterOutlet,RouterLink,NgbCollapseModule,NgbDropdownModule,FormsModule],
   templateUrl: './productions.component.html',
   styleUrl: './productions.component.css'
 })

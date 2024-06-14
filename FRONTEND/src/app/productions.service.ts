@@ -147,6 +147,7 @@ export class ProductionsService {
         localStorage.setItem('token', token);
         console.log("réponse ::",respon)
         localStorage.setItem('userType', userType);
+        localStorage.setItem('userName', username);
         return response;
       }));
 

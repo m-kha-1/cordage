@@ -7,7 +7,7 @@ import { ProductionsService } from '../productions.service';
 import { CommonModule } from '@angular/common';
 import { ProductionIdTtaskComponent } from '../production-id-ttask/production-id-ttask.component';
 
-
+import { HeaderComponent } from '../header/header.component';
 // import { shared1 } from '../component-communicator-service.service';
 
 
@@ -76,7 +76,7 @@ class Supervisor {
 @Component({
   selector: 'app-production-idtasks',
   standalone: true,
-  imports: [CommonModule, ProductionIdTtaskComponent, TabViewModule, FormsModule, NgbAlertModule, NgbDatepickerModule],
+  imports: [HeaderComponent,CommonModule, ProductionIdTtaskComponent, TabViewModule, FormsModule, NgbAlertModule, NgbDatepickerModule],
   providers: [ProductionsService, NgbOffcanvas, NgbOffcanvasConfig, CommonModule],
   templateUrl: './production-idtasks.component.html',
   styleUrl: './production-idtasks.component.css'
