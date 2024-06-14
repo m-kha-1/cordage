@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.http import JsonResponse
+from rest_framework import status
 from django.db.models import F
 
 from .models import*
@@ -215,7 +216,8 @@ def delTaskId(request,prod_id):
    task2 =Task2.objects.get(id=prod_id)
    
    task2.delete() 
-   return HttpResponse ("production deleted successfully")
+   
+   return Response ({"message": "Task deleted successfully"}, status=status.HTTP_200_OK)
 
 
 
@@ -359,9 +361,12 @@ class CustomTokenObtainPairView3(TokenObtainPairView):
         except UserProfile.DoesNotExist:
             return Response({"detail": "User profile not found"},)
 
+        user_serializer = UserSerializer(user)  # Utilisez votre serializer pour sérialiser l'utilisateur
+        user_data = user_serializer.data
         return Response({
             'access': token,
             'refresh': serializer.validated_data['refresh'],
             'user_type': user_type,  # Inclure le type d'utilisateur dans la réponse
+            'user': user_data
         })
 

@@ -13,11 +13,24 @@ export class HeaderComponent {
   infoName!:string | null;
   infoRole!:string | null;
    
-  
+  determineTextColor() {
+    // Logique pour déterminer la couleur en fonction de infoName ou infoRole
+    // Par exemple :
+    if (this.infoName === 'Unknown username or bad password') {
+        return 'red'; // Texte vert pour le rôle "Admin"
+    } else {
+        return 'blue'; // Texte rouge pour tous les autres rôles
+    }
+
+
+  }
    ngOnInit() { this.infoName= localStorage.getItem('userName');
     this.infoRole= localStorage.getItem('userType')
+    
+
+    }
 
 
    
   }
-}
+

@@ -13,8 +13,8 @@ section {
 }
 .header-left {
     justify-self: center;
-    /* font-size: 24px;
-    color: #001da1; */
+    font-size: 16px;
+    color: #001da1;
 }
 .header-center {
     text-align: center;

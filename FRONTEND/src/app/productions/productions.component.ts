@@ -140,7 +140,7 @@ resetForm():void{
 
 
 
-onSubmit(form: NgForm){if (localStorage.getItem('userType')=='producer'){
+onSubmit(form: NgForm){if (localStorage.getItem('userType')=='(producer)'){
 
   if (form.valid) {
     this.formData.producers = this.selectedProducers.map(producer => producer.id);

@@ -232,6 +232,7 @@ export class ProductionIdtasksComponent {
         //remove for test
         
         this.resetform();
+        location.reload();
       });
     } else {
       console.log('Form submission failed. Form is invalid.');
@@ -319,9 +320,21 @@ export class ProductionIdtasksComponent {
 
 
   delete(datadelev: { id: number }) {
-    if (localStorage.getItem("userType")=="supervisor"){this.productionsService.deleteTask(datadelev.id).subscribe();}
-    else{alert("you must be a supervisor to delete")}
-    
+    if (localStorage.getItem("userType") == "(supervisor)") {
+      this.productionsService.deleteTask(datadelev.id).subscribe(
+        response => {
+          // Log de la réponse pour s'assurer que l'appel a réussi
+          console.log('Réponse de suppression:', response);
+          // Recharger la page après la suppression réussie
+          location.reload();
+        },
+        error => {
+          // Gérer les erreurs potentielles
+          console.error('Erreur lors de la suppression', error);
+        }
+      );
+    }
+  else{alert("You must be a supervisor to delete a task")}
   
   }
 

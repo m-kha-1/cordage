@@ -106,7 +106,7 @@ export class TaskDetailsComponent {
   }
   
   comment(i:number,commentaire:string){
-    if (localStorage.getItem('userType')=="supervisor"){
+    if (localStorage.getItem('userType')=="(supervisor)"){
     this.dataTaskString.comments_supervisor2[String(i)]=commentaire;
     console.log('après : ',this.dataTaskString.comments_supervisor2);
     this.jsonNataskTytaskComm={"name":this.dataTaskString.name,"type":this.dataTaskString.type,"comments_supervisor2":this.dataTaskString.comments_supervisor2}

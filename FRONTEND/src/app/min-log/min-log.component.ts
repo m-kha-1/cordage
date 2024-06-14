@@ -18,14 +18,22 @@ export class MinLogComponent {
     this.productionsService.login(this.username, this.password).subscribe(
       data => {
         // Traitement en cas de succès de la connexion
-        console.log('Connecté avec succès', data);
-        this.router.navigate(['/productions']);
-      },
-      error => {
-        // Traitement en cas d'échec de la connexion
-        console.error('Erreur de connexion', error);
+        
+      
+        if (this.router.url === '/productions') {
+          // Recharger la page
+          location.reload();
+        } else {
+          // Naviguer vers la page 'productions'
+          this.router.navigate(['/productions']);
+        }
+        if (data.detail=="Invalid credentials"){  console.log('utili non reconnu', data);localStorage.setItem('userName','Unknown username or bad password'),
+          localStorage.setItem('userType','');
+        
+
+         }else{  console.log('Connecté avec succès', data.detail);
+          localStorage.setItem('userName',this.username);localStorage.setItem('userType','('+data['user_type']+')');};
       }
- 
     );
    
   }
