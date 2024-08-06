@@ -74,6 +74,7 @@ export class TaskDetailsComponent {
   sharedValue!:Task2;
 
   urls:string[] =[]
+  scenes:string[]=[]
   length:number=0
 
   imagePath: string="";
@@ -88,9 +89,17 @@ export class TaskDetailsComponent {
 
   jsonNataskTytaskComm!:{"name":{},"type":{},"comments_supervisor2":{}}
 
- 
+//  testpath:string="C:\\CORD\\ProductionC3\\lighting\\LIGHTING\\PUBLISH\\scenes\\lgt2.blend"
 
+  launch(scenePath:string){
+    console.log("scene",scenePath);
+    this.productionsService.launch_scene(scenePath).subscribe( {next:(response)=>{console.log(response)},
+    error:error=>{console.log(error)}}
+     
 
+    )
+
+  }
 
   commentS(i: number, commentaire: string) {
     
@@ -141,7 +150,8 @@ export class TaskDetailsComponent {
 
 }
   this.productionsService.listVersionsPublished(this.dataTaskString.production_name,this.dataTaskString.type,this.dataTaskString.name).subscribe((data:any) =>this.urls= data)
-  
+  this.productionsService.listScenesPublished(this.dataTaskString.production_name,this.dataTaskString.type,this.dataTaskString.name).subscribe((data:any) =>{this.scenes= data;  console.log("scenes:",this.scenes)})
+
 
 
 

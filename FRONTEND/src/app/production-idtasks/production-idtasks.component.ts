@@ -87,6 +87,8 @@ class Supervisor {
 
 export class ProductionIdtasksComponent {
 
+  imagePath:string=""
+
   // datepicker
   model!: NgbDateStruct;
 
@@ -130,6 +132,24 @@ export class ProductionIdtasksComponent {
 
 
   savedData!: string;
+  loadImage(): void {
+  
+    
+    this.productionsService.image_production(this.infoProduction.name).subscribe(
+      data => {
+        this.imagePath = data; // Mettez à jour cette ligne selon la structure de vos données
+        console.log('Image path loaded:', this.imagePath);
+      },
+      error => {
+        console.error('Error loading image:', error);
+      }
+    );
+  }
+
+
+
+
+
 
   constructor( private productionsService: ProductionsService, config: NgbOffcanvasConfig,
     private offcanvasService: NgbOffcanvas,
@@ -150,9 +170,19 @@ export class ProductionIdtasksComponent {
   ngOnInit(): void {
     //à l'initialisation récupère sahreddata (qui contient l'id de la production séléctionnée) de component productions à l'aide du service communicator
     
+    
+    
+    
+    
+    
+    
     let infoProduction= localStorage.getItem('dataProduction') 
     if (infoProduction != null ) {
     this.infoProduction=JSON.parse(infoProduction);console.log(this.infoProduction.name)}
+    this.loadImage();
+
+
+    
     
    
     

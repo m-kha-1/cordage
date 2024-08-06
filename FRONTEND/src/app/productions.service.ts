@@ -115,17 +115,26 @@ export class ProductionsService {
   listVersionsPublished(np: string, tt: string, nt: string): Observable<any> {
 
     return this.http.get<any>(`${this.url}/liste-fichiers/${np}/${tt}/${nt}/`)
-
-
-  
   }
+  listScenesPublished(np: string, tt: string, nt: string): Observable<any> {
+
+    return this.http.get<any>(`${this.url}/liste-scenes2/${np}/${tt}/${nt}/`)
+  }
+
+
+
   image_production(np: string): Observable<any> {
 
     return this.http.get<any>(`${this.url}/image_production/${np}/`)
 
+  }
 
+  launch_scene(scenePath:string):Observable<any> {
+    const body={blend_file_path:scenePath}
+    return this.http.post<any>(`${this.url}/api/lancer_scene/`,body)
 
   }
+
 
 
 
